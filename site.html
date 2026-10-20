@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>USHAŞ x HealthTürkiye | COP31</title>
+<meta name="description" content="T.C. Sağlık Bakanlığı'nın ilgili kuruluşu.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C8102E;--red2:#FF3542;--ink:#0B0C0E;--font:'Inter',Arial,sans-serif;--max:1300px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s}
+.topbar.sc{background:rgba(11,12,14,.92);backdrop-filter:blur(14px)}
+.topin{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;gap:20px}
+.logo-wrap{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}
+.logo-text{font-size:14px;font-weight:900;letter-spacing:.3px}
+.nav-links{display:flex;align-items:center;gap:24px;font-size:11px;letter-spacing:1.5px;font-weight:800;color:#ffffff}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--red);color:#fff!important;padding:9px 16px;font-size:14px;letter-spacing:1.4px;font-weight:900;border-radius:2px;transition:background .15s}
+.nav-cta:hover{background:var(--red2)!important}
+
+/* FRONTEND LANG SWITCH */
+.fl-switch{display:flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;overflow:hidden}
+.fl-btn{padding:5px 11px;font-size:9px;font-weight:800;cursor:pointer;color:rgba(255,255,255,.6);background:none;border:none;transition:all .12s;letter-spacing:.5px}
+.fl-btn.on{background:var(--red);color:#fff}
+
+/* WRAP */
+.wrap{width:min(var(--max),calc(100% - 80px));margin:0 auto}
+
+/* HERO */
+.hero{height:100svh;min-height:700px;position:relative;overflow:hidden;color:#fff;display:flex;align-items:flex-end;background:linear-gradient(135deg,#C8102E,#FF3542);}
+.hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.02) 45%,rgba(0,0,0,.65) 100%);opacity:0.24}
+.hero-grad{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,#C8102E,#FF3542);opacity:0.33}
+.hero video.vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-in{position:relative;z-index:3;padding:0 40px 90px;max-width:var(--max);margin:0 auto;width:100%;text-align:left}
+.kicker{font-size:9px;letter-spacing:3px;font-weight:900;color:rgba(255,255,255,.8);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:'';display:inline-block;width:32px;height:1px;background:var(--red);flex-shrink:0}
+.hero h1{font-size:clamp(60px,9.5vw,145px);line-height:1.10;letter-spacing:0px;font-weight:819;margin-bottom:28px}
+.hero .sub{font-size:clamp(15px,1.5vw,19px);line-height:1.65;color:rgba(255,255,255,.85);max-width:620px;margin-bottom:34px}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:13px 20px;font-size:9px;letter-spacing:1.8px;font-weight:900;transition:background .15s}
+.hero-cta:hover{background:var(--red2)}
+.hero-cta::after{content:'→';font-size:13px}
+.scroll-hint{position:absolute;right:38px;bottom:32px;font-size:8px;letter-spacing:2.5px;color:rgba(255,255,255,.45);writing-mode:vertical-rl;z-index:4}
+
+/* SECTIONS */
+.sec{position:relative;overflow:hidden;padding:130px 0}
+.sec-bg{position:absolute;inset:-14%;background-size:cover;background-position:center;will-change:transform}
+.sec-vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sec-ov{position:absolute;inset:0;z-index:1;pointer-events:none}
+.sec-in{position:relative;z-index:2}
+.fg-el{position:absolute;top:0;height:100%;object-fit:cover;z-index:3}
+.media-ph{min-height:400px;background:rgba(0,0,0,.08);border-radius:2px}
+
+/* KICKER */
+.sec .kicker{color:var(--red)}
+.sec .kicker::before{background:var(--red)}
+.redband .kicker{color:rgba(255,255,255,.8)}
+.redband .kicker::before{background:rgba(255,255,255,.5)}
+
+/* TYPOGRAPHY */
+h2{font-size:clamp(42px,6vw,88px);line-height:var(--sec-h-lh,.88);letter-spacing:var(--sec-h-ls,-4px);font-weight:var(--sec-h-fw,900);margin-bottom:28px;color:var(--sec-h-color,var(--ink))}
+/* Section CSS variable overrides */
+.sec h2{color:var(--sec-h-color,inherit)}
+.sec .body p{color:var(--sec-t-color,inherit);font-size:var(--sec-b-size,clamp(16px,1.4vw,20px))}
+.sec .kicker{color:var(--sec-k-color,var(--red))}
+.sec .kicker::before{background:var(--sec-k-color,var(--red))}
+.sec .sec2{color:var(--sec-t-color,inherit)}
+/* When sec-h-size set, override clamp */
+.sec h2{font-size:clamp(var(--sec-h-size,42px),6vw,max(var(--sec-h-size,42px),88px))}
+.redband h2,.fullmedia h2{color:#fff}
+.body p{font-size:clamp(16px,1.4vw,20px);line-height:1.75}
+.redband .body p,.fullmedia .body p{color:rgba(255,255,255,.88)}
+.sec2{margin-top:24px;padding-top:20px;border-top:1px solid currentColor;font-size:11px;line-height:1.9;opacity:.65}
+
+/* LAYOUTS */
+.spl{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:14px;position:relative}
+.spl.spl-flip{grid-template-columns:1fr 1fr}
+.spl.spl-flip .spl-media{order:-1}
+.spl-media{aspect-ratio:4/5;max-height:600px;overflow:hidden;position:relative;border-radius:4px}
+.spl-media img,.spl-media video,.spl-media iframe{width:100%;height:100%;object-fit:cover;display:block}
+.spl-media .fg-media-wrap{position:relative!important;width:100%!important;height:100%!important;top:auto!important;left:auto!important;right:auto!important;transform:none!important}
+
+.mspl{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:14px}
+.mspl.mspl-flip .mspl-media{order:-1}
+.mspl-media{min-height:430px;overflow:hidden;border-radius:2px;position:relative}
+.mspl-media .fg-el{position:relative;width:100%;height:auto;top:auto;inset:auto}
+.mspl-media img,.mspl-media video{width:100%;height:100%;object-fit:cover;display:block}
+
+.stmt{max-width:960px}
+.stmt h2{font-size:clamp(48px,7.5vw,105px)}
+.spl .stmt{max-width:none;padding-top:20px}
+.spl .stmt h2{font-size:clamp(32px,4.5vw,72px);margin-bottom:20px}
+.spl-copy{display:flex;flex-direction:column;justify-content:flex-start;padding-top:0}
+
+.rb-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:14px;align-items:start}
+.redband .body p{max-width:none}
+
+/* GALLERY */
+.gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-auto-rows:270px;gap:8px;margin-top:26px}
+.gal figure{margin:0;position:relative;overflow:hidden;background:#ddd;cursor:zoom-in}
+.gal figure.gw{grid-row:span 2}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption{position:absolute;left:12px;bottom:10px;color:#fff;font-size:9px;font-weight:800;z-index:2;letter-spacing:.7px}
+.gal figcaption,.gal figure figcaption,.gal .caption,.gal [class*=caption]{display:none!important;visibility:hidden!important;opacity:0!important}
+.gal figure::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.55));pointer-events:none}.gal figure.media-error::before{content:'Medya yüklenemedi';position:absolute;inset:0;display:grid;place-items:center;background:#ddd;color:#777;font-size:11px;font-weight:700;z-index:2}.gal figure.media-error img{display:none}
+
+/* FULLMEDIA */
+.fullmedia{height:80vh;min-height:580px;display:flex;align-items:center;color:#fff}
+
+/* REDBAND */
+.redband{color:#fff;padding:120px 0}
+
+.section-ctas{display:flex;flex-wrap:wrap;align-items:center;margin-top:28px;position:relative}.section-cta{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 18px;font-size:9px;font-weight:900;letter-spacing:1.3px;border:1px solid transparent;background:var(--b-bg);color:var(--b-color);transition:.2s}.section-cta.outline{background:transparent;color:var(--b-bg);border-color:var(--b-bg)}.section-cta.ghost{background:transparent;color:var(--b-color);border-color:transparent}.section-cta:hover{transform:translateY(-1px)}.bt-en{display:none}.lang-en .bt-en{display:inline}.lang-en .bt-tr{display:none}.i18n-en{display:none}.lang-en .i18n-tr{display:none}.lang-en .i18n-en{display:inline}.provider-frame{position:absolute;inset:0;width:100%;height:100%;border:0;transform:scale(1.055);transform-origin:center;pointer-events:none}.fg-media-wrap{position:absolute;top:0;height:100%;z-index:3;overflow:hidden}.fg-media-wrap .provider-frame,.fg-media-wrap video,.fg-media-wrap img{width:100%;height:100%;object-fit:cover;position:relative;inset:auto;display:block}/* CONTACT */
+.ct-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:start;margin-top:18px}
+.ct-copy h2{color:#ffffff;font-size:clamp(40px,7vw,80px)}
+.ct-copy p{color:rgba(255,255,255,0.85);font-size:16px;line-height:1.7;margin-top:14px}
+.ct-card{background:#fff;color:#111;padding:34px;border-top:3px solid var(--red);border-radius:2px}
+.cc-name{font-size:21px;font-weight:800;margin-bottom:3px}
+.cc-role{font-size:8px;color:var(--red);font-weight:900;letter-spacing:1.4px;margin-bottom:20px}
+.cc-line{padding:11px 0;border-top:1px solid #f0f0f0;font-size:13px;display:flex;gap:12px;align-items:baseline}
+.cc-line b{font-size:7px;letter-spacing:1.3px;color:#999;font-weight:900;min-width:52px;flex-shrink:0}
+
+/* FOOTER */
+footer{background:#0b0c0e;color:#ffffff;padding:26px 0;font-size:11px;letter-spacing:1.5px}
+.foot{display:flex;justify-content:space-between;align-items:center}
+.foot a:hover{color:#fff}
+
+/* FEATURES */
+.feat-split{display:grid;gap:80px;align-items:center;margin-top:14px}
+.feat-split.feat-img-right{grid-template-columns:1fr 1fr}
+.feat-split.feat-img-left{grid-template-columns:1fr 1fr}
+.feat-split.feat-img-left .feat-media{order:-1}
+
+/* TEXT ALIGNMENT — explicit cascading so text-align applies to all children */
+.sec-align-left{text-align:left}
+.sec-align-center{text-align:center}
+.sec-align-right{text-align:right}
+.sec-align-left .body p,.sec-align-left h2,.sec-align-left .kicker,.sec-align-left .sec2{text-align:left}
+.sec-align-center .body p,.sec-align-center h2,.sec-align-center .kicker,.sec-align-center .sec2{text-align:center}
+.sec-align-right .body p,.sec-align-right h2,.sec-align-right .kicker,.sec-align-right .sec2{text-align:right}
+.sec-align-center .kicker{justify-content:center}
+.sec-align-right .kicker{justify-content:flex-end}
+.sec-align-center .section-ctas{justify-content:center}
+.sec-align-right .section-ctas{justify-content:flex-end}
+.sec-align-center .stmt{margin:0 auto}
+
+/* SPLIT LAYOUT — fg_pos:left flips columns */
+.spl.spl-flip{grid-template-columns:1fr 1fr}
+.spl.spl-flip .spl-media{order:-1}
+.feat-media{min-height:380px;overflow:hidden;border-radius:4px;position:relative}
+.feat-media img,.feat-media video{width:100%;height:100%;object-fit:cover;display:block}
+.feat-grid{display:grid;gap:16px;margin-top:24px}
+.feat-cols-1{grid-template-columns:1fr}
+.feat-cols-2{grid-template-columns:1fr 1fr}
+.feat-cols-3{grid-template-columns:1fr 1fr 1fr}
+.feat-item{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--feat-item-bg,rgba(0,0,0,.04));border-radius:6px;border-left:3px solid var(--feat-item-accent,var(--red))}
+.feat-label{font-size:15px;font-weight:600;line-height:1.45;color:var(--feat-item-color,var(--sec-t-color,inherit))}
+.feat-item-img{flex-direction:column;padding:0;background:none;border-left:none}
+.feat-item-img .feat-img-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:4px;margin-bottom:10px}
+.feat-item-img .feat-img-wrap img{width:100%;height:100%;object-fit:cover}
+.feat-icon{font-size:22px;flex-shrink:0;line-height:1;margin-top:2px}
+.redband .feat-item{--feat-item-bg:rgba(255,255,255,.12);--feat-item-accent:rgba(255,255,255,.5);--feat-item-color:rgba(255,255,255,.95)}
+.redband .feat-icon{color:rgba(255,255,255,.9)}
+.fullmedia .feat-item{--feat-item-bg:rgba(255,255,255,.12);--feat-item-accent:rgba(255,255,255,.5);--feat-item-color:rgba(255,255,255,.95)}
+.dark-feat .feat-item{--feat-item-bg:rgba(255,255,255,.12);--feat-item-accent:rgba(255,255,255,.5);--feat-item-color:rgba(255,255,255,.95)}
+.dark-feat .feat-icon{color:rgba(255,255,255,.9)}
+/* ── DIGITAL ARCHIVE / BROCHURE CENTER ── */
+.arc-admin-media{display:flex;gap:8px;flex-wrap:wrap}.arc-admin-media>div{position:relative;width:92px;height:92px;background:#111;border:1px solid var(--b2);overflow:hidden;border-radius:4px}.arc-admin-media img,.arc-admin-media video{width:100%;height:100%;object-fit:cover}.arc-admin-media button{position:absolute;right:3px;top:3px;width:22px;height:22px;border:0;border-radius:50%;background:#c8102e;color:#fff;cursor:pointer;font-weight:900}.arc-section{background:#f7f7f7}.arc-rail-wrap{position:relative;margin-top:38px}.arc-rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:12px 8px 28px 2px;scrollbar-width:thin}.arc-rail::-webkit-scrollbar{height:5px}.arc-rail::-webkit-scrollbar-thumb{background:#c8102e;border-radius:10px}.arc-card{flex:0 0 clamp(270px,28vw,360px);scroll-snap-align:start;background:#fff;border:1px solid rgba(11,12,14,.08);box-shadow:0 12px 36px rgba(11,12,14,.08);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;overflow:hidden}.arc-card:hover{transform:translateY(-10px);box-shadow:0 24px 55px rgba(11,12,14,.16)}.arc-cover{height:330px;background:#111;position:relative;overflow:hidden}.arc-cover img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.arc-card:hover .arc-cover img{transform:scale(1.045)}.arc-cover-shine{position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.24) 45%,transparent 65%);transform:translateX(-120%);transition:transform .9s}.arc-card:hover .arc-cover-shine{transform:translateX(120%)}.arc-cover-fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;background:linear-gradient(145deg,#171717,#c8102e)}.arc-cover-fallback span{font-size:58px;font-weight:900;letter-spacing:-4px}.arc-cover-fallback b{font-size:10px;letter-spacing:3px}.arc-info{padding:22px}.arc-year{font-size:9px;font-weight:900;letter-spacing:2px;color:#c8102e;margin-bottom:8px}.arc-info h3{font-size:24px;line-height:1.05;letter-spacing:-1px;color:#0b0c0e;margin-bottom:10px}.arc-info p{font-size:13px;line-height:1.6;color:#666;min-height:42px}.arc-actions{display:flex;gap:8px;align-items:center;margin-top:18px}.arc-actions button,.arc-actions a{border:0;background:#c8102e;color:#fff;padding:10px 13px;font:800 9px/1 var(--font);letter-spacing:1px;cursor:pointer;text-decoration:none}.arc-actions a{background:#0b0c0e}.arc-actions button span{font-size:13px;margin-left:6px}.arc-nav{position:absolute;z-index:4;top:42%;width:42px;height:42px;border-radius:50%;border:1px solid rgba(11,12,14,.12);background:rgba(255,255,255,.94);box-shadow:0 8px 25px rgba(0,0,0,.12);cursor:pointer;font-size:28px;line-height:1}.arc-prev{left:-18px}.arc-next{right:-18px}.arc-empty{padding:55px 30px;color:#777;border:1px dashed #ccc;width:100%;text-align:center}.arc-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(6,7,9,.82);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px}.arc-modal.open{display:flex}.arc-dialog{width:min(1120px,96vw);max-height:90vh;overflow:auto;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.35);position:relative}.arc-dialog-head{padding:28px 32px 18px;border-bottom:1px solid #eee;display:flex;align-items:flex-start;gap:18px}.arc-dialog-head>div:first-child{flex:1}.arc-dialog-year{font-size:9px;letter-spacing:2px;font-weight:900;color:#c8102e}.arc-dialog h3{font-size:clamp(28px,4vw,48px);letter-spacing:-2px;line-height:.95;margin-top:8px}.arc-close{width:38px;height:38px;border:1px solid #ddd;background:#fff;border-radius:50%;cursor:pointer;font-size:22px}.arc-tabs{display:flex;gap:4px;padding:14px 32px;border-bottom:1px solid #eee;overflow:auto}.arc-tab{border:0;background:#f4f4f4;padding:10px 14px;font:800 9px/1 var(--font);letter-spacing:1px;white-space:nowrap;cursor:pointer}.arc-tab.on{background:#c8102e;color:#fff}.arc-pane{display:none;padding:28px 32px}.arc-pane.on{display:block}.arc-brochure{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:34px}.arc-brochure-cover{background:#111;min-height:390px}.arc-brochure-cover img{width:100%;height:100%;object-fit:cover}.arc-detail h4{font-size:25px;margin-bottom:12px}.arc-detail p{font-size:14px;line-height:1.75;color:#555}.arc-detail-btn{display:inline-flex;margin-top:18px;background:#c8102e;color:#fff;padding:13px 17px;font-size:9px;font-weight:900;letter-spacing:1px}.arc-media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.arc-media-grid figure{margin:0;background:#111;aspect-ratio:4/3;overflow:hidden}.arc-media-grid img,.arc-media-grid video{width:100%;height:100%;object-fit:cover}.arc-data-list{display:grid;gap:12px}.arc-data-card{padding:25px;background:#f6f6f6;border-left:3px solid #c8102e}.arc-data-card p{font-size:14px;color:#555;line-height:1.7}.arc-data-card a{display:inline-flex;margin-top:16px;background:#0b0c0e;color:#fff;padding:12px 16px;font-size:9px;font-weight:900;letter-spacing:1px}@media(max-width:880px){.arc-nav{display:none}.arc-card{flex-basis:78vw}.arc-cover{height:300px}.arc-dialog-head,.arc-tabs,.arc-pane{padding-left:20px;padding-right:20px}.arc-brochure{grid-template-columns:1fr}.arc-brochure-cover{height:360px;min-height:0}.arc-media-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.arc-card{flex-basis:86vw}.arc-cover{height:330px}.arc-media-grid{grid-template-columns:1fr}.arc-modal{padding:10px}.arc-dialog{max-height:94vh}}
+
+
+/* V29 — PERSISTENT PREMIUM PROMOTIONAL MATERIALS */
+.arc-section{background:#f6f6f3!important;padding:110px 0 105px!important;overflow:hidden!important}
+.arc-section .wrap{width:min(1180px,calc(100% - 64px))!important;max-width:1180px!important}
+.arc-section .kicker{display:flex;align-items:center;gap:12px;font-size:10px!important;letter-spacing:3.2px!important;font-weight:900!important;text-transform:uppercase;color:#c8102e!important;margin:0 0 16px!important}
+.arc-section .kicker:before{content:"";width:36px;height:1px;background:#c8102e;display:block;flex:0 0 36px}
+.arc-rail-wrap{position:relative;margin-top:38px;width:100%;max-width:100%;overflow:hidden;padding:0 54px;box-sizing:border-box}
+.arc-rail{display:flex;gap:22px;width:100%;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:10px 2px 22px;margin:0;scrollbar-width:none;-ms-overflow-style:none}
+.arc-rail::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.arc-card{flex:0 0 calc((100% - 44px)/3)!important;width:calc((100% - 44px)/3)!important;min-width:0!important;box-sizing:border-box;scroll-snap-align:start;border:1px solid rgba(11,12,14,.065);border-radius:18px;background:#fff;box-shadow:0 12px 38px rgba(11,12,14,.075);overflow:hidden;transform:none!important;transition:transform .35s ease,box-shadow .35s ease}
+.arc-card:hover{transform:translateY(-7px)!important;box-shadow:0 24px 58px rgba(11,12,14,.14)}
+.arc-cover{height:auto!important;aspect-ratio:16/10!important;background:#ecece8;overflow:hidden}
+.arc-cover img{width:100%;height:100%;object-fit:cover!important;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.arc-card:hover .arc-cover img{transform:scale(1.035)}
+.arc-info{padding:21px 21px 22px!important;display:flex;flex-direction:column;min-height:214px;box-sizing:border-box}
+.arc-year{font-size:9px!important;letter-spacing:2.6px!important;font-weight:900!important;color:#c8102e!important;margin-bottom:9px!important}
+.arc-info h3{font-size:21px!important;line-height:1.08!important;letter-spacing:-.8px!important;min-height:45px;margin:0 0 9px!important;color:#0b0c0e!important}
+.arc-info p{font-size:12.5px!important;line-height:1.62!important;color:#666!important;min-height:60px!important;margin:0!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.arc-actions{margin-top:auto!important;padding-top:17px;display:flex;gap:7px;align-items:center}
+.arc-actions button,.arc-actions a{border-radius:5px!important;padding:11px 13px!important;font-size:9px!important;letter-spacing:.8px!important;line-height:1!important;transition:transform .2s ease,box-shadow .2s ease}
+.arc-actions button{background:#c8102e!important;color:#fff!important}.arc-actions a{background:#111315!important;color:#fff!important}
+.arc-actions button:hover,.arc-actions a:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.arc-nav{position:absolute;z-index:5;top:50%;transform:translateY(-50%);width:42px!important;height:42px!important;border-radius:50%!important;border:1px solid rgba(11,12,14,.1)!important;background:#fff!important;box-shadow:0 10px 28px rgba(0,0,0,.13)!important;color:#111!important;font-size:25px!important;line-height:1!important;display:grid;place-items:center;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.arc-nav:hover{transform:translateY(-50%) scale(1.06)!important;box-shadow:0 16px 34px rgba(0,0,0,.17)!important}
+.arc-prev{left:0!important}.arc-next{right:0!important}
+.arc-rail-wrap:after{content:"";position:absolute;left:54px;right:54px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(11,12,14,.12),transparent);pointer-events:none}
+@media(max-width:1050px){.arc-section .wrap{width:min(920px,calc(100% - 44px))!important}.arc-rail-wrap{padding:0 46px}.arc-card{flex-basis:calc((100% - 22px)/2)!important;width:calc((100% - 22px)/2)!important}.arc-rail-wrap:after{left:46px;right:46px}}
+@media(max-width:680px){.arc-section{padding:78px 0 76px!important}.arc-section .wrap{width:calc(100% - 28px)!important}.arc-rail-wrap{padding:0}.arc-card{flex-basis:100%!important;width:100%!important}.arc-cover{aspect-ratio:16/10!important}.arc-nav{display:none}.arc-rail-wrap:after{display:none}.arc-info{min-height:0}.arc-info p{min-height:0}}
+/* End V29 */
+
+/* ── DIGITAL ARCHIVE V25 : PREMIUM MEDIA VIEWER ── */
+.arc-modal{padding:0;background:rgba(7,9,12,.9);backdrop-filter:blur(18px)}
+.arc-dialog{width:min(1440px,100vw);height:min(94vh,980px);max-height:94vh;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 40px 120px rgba(0,0,0,.42);display:flex;flex-direction:column}
+.arc-dialog-head{padding:24px 30px 18px;min-height:92px;background:rgba(255,255,255,.98);position:relative;z-index:3}
+.arc-dialog h3{font-size:clamp(30px,3.2vw,52px);letter-spacing:-2.6px;line-height:.94}
+.arc-close{width:42px;height:42px;flex:0 0 42px;font-size:20px;transition:.25s}.arc-close:hover{background:#c8102e;color:#fff;border-color:#c8102e;transform:rotate(90deg)}
+.arc-tabs{padding:0 30px;border-bottom:1px solid #e9e9e9;background:#fff;gap:0;flex:0 0 auto}
+.arc-tab{position:relative;background:transparent;padding:16px 18px 15px;color:#555;border-radius:0;font-size:10px;letter-spacing:1.25px;transition:.25s}
+.arc-tab:after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:3px;background:#c8102e;transform:scaleX(0);transition:transform .25s;transform-origin:center}.arc-tab:hover{color:#0b0c0e}.arc-tab.on{background:transparent;color:#c8102e}.arc-tab.on:after{transform:scaleX(1)}
+.arc-pane{padding:26px 30px;overflow:auto;flex:1;min-height:0;background:#fafafa}.arc-pane::-webkit-scrollbar{width:8px}.arc-pane::-webkit-scrollbar-thumb{background:#d1d1d1;border-radius:20px}
+.arc-brochure{grid-template-columns:minmax(280px,390px) 1fr;align-items:start;gap:42px}.arc-brochure-cover{min-height:520px;border-radius:10px;box-shadow:0 20px 55px rgba(0,0,0,.14);overflow:hidden}.arc-brochure-cover img{object-fit:contain;background:#f0f0f0}.arc-detail{padding-top:18px;max-width:700px}.arc-detail h4{font-size:32px;letter-spacing:-1.3px}.arc-detail p{font-size:15px;line-height:1.85}.arc-detail-btn{border-radius:4px;transition:.25s}.arc-detail-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(200,16,46,.22)}
+.arc-photo-toolbar{display:flex;align-items:center;gap:10px;margin:0 0 18px;padding:0 0 14px;border-bottom:1px solid #e8e8e8}.arc-photo-count{font-size:11px;font-weight:800;letter-spacing:.6px;color:#222}.arc-photo-hint{font-size:10px;color:#888}.arc-photo-spacer{flex:1}.arc-photo-btn{border:1px solid #ddd;background:#fff;color:#222;padding:9px 12px;border-radius:4px;font:800 9px/1 var(--font);letter-spacing:.7px;cursor:pointer;transition:.2s}.arc-photo-btn:hover{border-color:#c8102e;color:#c8102e}
+.arc-media-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.arc-media-grid figure{position:relative;margin:0;aspect-ratio:16/11;background:#151515;border:1px solid #e4e4e4;border-radius:8px;overflow:hidden;cursor:zoom-in;box-shadow:0 8px 25px rgba(0,0,0,.06)}.arc-media-grid figure:after{content:"↗";position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:14px;opacity:0;transform:translateY(-4px);transition:.2s}.arc-media-grid figure:hover:after{opacity:1;transform:none}.arc-media-grid img,.arc-media-grid video{width:100%;height:100%;object-fit:contain;display:block;background:#111;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.arc-media-grid figure:hover img{transform:scale(1.025)}.arc-media-caption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 11px;color:#fff;font-size:10px;background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:0;transition:.25s}.arc-media-grid figure:hover .arc-media-caption{opacity:1}
+.arc-video-grid figure{cursor:default}.arc-video-grid figure:after{display:none}.arc-video-grid video{object-fit:contain}.arc-empty-pane{min-height:280px;display:grid;place-items:center;border:1px dashed #d5d5d5;border-radius:10px;background:#fff;color:#777;font-size:13px}
+.arc-lightbox{display:none;position:fixed;inset:0;z-index:1200;background:rgba(3,4,6,.96);align-items:center;justify-content:center;padding:26px}.arc-lightbox.open{display:flex}.arc-lightbox-stage{position:relative;width:min(94vw,1500px);height:min(88vh,900px);display:flex;align-items:center;justify-content:center}.arc-lightbox-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;user-select:none;box-shadow:0 25px 90px rgba(0,0,0,.45)}.arc-lb-close,.arc-lb-prev,.arc-lb-next{position:absolute;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(8px);cursor:pointer;display:grid;place-items:center}.arc-lb-close{right:0;top:0;width:44px;height:44px;border-radius:50%;font-size:22px}.arc-lb-prev,.arc-lb-next{top:50%;transform:translateY(-50%);width:50px;height:70px;border-radius:12px;font-size:34px}.arc-lb-prev{left:10px}.arc-lb-next{right:10px}.arc-lb-close:hover,.arc-lb-prev:hover,.arc-lb-next:hover{background:#c8102e;border-color:#c8102e}.arc-lb-bottom{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:80%;padding:8px 12px;border-radius:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px}.arc-lb-counter{font-weight:800;white-space:nowrap}.arc-lb-caption{max-width:55vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#ddd}.arc-lb-download{color:#fff;text-decoration:none;font-weight:800;margin-left:4px}.arc-lb-download:hover{color:#ff526d}
+@media(max-width:880px){.arc-dialog{width:100vw;height:100vh;max-height:100vh;border-radius:0}.arc-dialog-head{padding:20px}.arc-tabs{padding:0 16px}.arc-pane{padding:20px 16px}.arc-brochure{grid-template-columns:1fr;gap:22px}.arc-brochure-cover{height:420px;min-height:0}.arc-detail{padding-top:0}.arc-media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.arc-lightbox{padding:12px}.arc-lightbox-stage{width:100vw;height:88vh}.arc-lb-prev,.arc-lb-next{width:42px;height:58px}.arc-lb-prev{left:0}.arc-lb-next{right:0}.arc-lb-bottom{bottom:2px}}
+@media(max-width:520px){.arc-dialog-head{min-height:82px;padding:17px}.arc-dialog h3{font-size:28px}.arc-tabs{overflow-x:auto}.arc-tab{padding:14px 13px}.arc-media-grid{grid-template-columns:1fr;gap:12px}.arc-media-grid figure{aspect-ratio:16/10}.arc-brochure-cover{height:360px}.arc-photo-toolbar{flex-wrap:wrap}.arc-photo-spacer{display:none}.arc-lb-caption{display:none}}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  .topin{padding:0 16px;height:62px}
+  .nav-links{display:none}
+  .hero-in{padding:0 20px 70px}
+  .hero h1{font-size:clamp(38px,10vw,72px)!important;line-height:1.05!important;letter-spacing:-2px!important}
+  .hero .sub{font-size:15px;max-width:100%}
+  .hero-cta{font-size:10px;padding:12px 18px}
+  .wrap{width:calc(100% - 40px)}
+  .sec{padding:70px 0}
+  .sec h2{font-size:clamp(32px,8vw,60px)!important;letter-spacing:-2px!important;line-height:1.0!important}
+  .stmt h2{font-size:clamp(30px,7.5vw,54px)!important}
+  .spl,.mspl,.rb-split,.feat-split{grid-template-columns:1fr!important;gap:32px}
+  .ct-grid{grid-template-columns:1fr!important;gap:28px}
+  .ct-copy h2{font-size:clamp(32px,9vw,56px)!important}
+  .feat-cols-2,.feat-cols-3{grid-template-columns:1fr}
+  .gal{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .gal figure.gw{grid-row:span 1}
+  .scroll-hint{display:none}
+  .spl-media{aspect-ratio:16/9;max-height:280px}
+  .mspl-media{min-height:240px}
+  .feat-media{min-height:240px}
+  .redband{padding:70px 0}
+  footer .foot{flex-direction:column;gap:10px;text-align:center}
+}
+@media(max-width:520px){
+  .topin{padding:0 14px}
+  .wrap{width:calc(100% - 28px)}
+  .gal{grid-template-columns:1fr;grid-auto-rows:220px}
+  .hero h1{font-size:clamp(34px,9vw,56px)!important;letter-spacing:-1px!important}
+  .hero .sub{font-size:14px}
+  .sec{padding:56px 0}
+  .sec h2{font-size:clamp(28px,8vw,48px)!important}
+  .ct-copy h2{font-size:clamp(28px,8vw,44px)!important}
+  .ct-grid{gap:20px}
+  .ct-card{padding:22px}
+  .feat-grid{gap:10px}
+  .feat-item{padding:12px}
+}
+
+/* ── MOBILE MENU ── */
+.mob-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;margin-left:8px}
+.mob-toggle span{display:block;width:22px;height:2px;background:#fff;transition:all .3s;border-radius:1px}
+.mob-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mob-toggle.open span:nth-child(2){opacity:0}
+.mob-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;position:fixed;inset:0;top:62px;background:rgba(11,12,14,.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:14px;letter-spacing:2px;font-weight:800;color:rgba(255,255,255,.7)}
+.mob-nav a:hover{color:#fff}
+.mob-nav .nav-cta{color:#fff!important}
+.mob-lang{display:flex;gap:10px;margin-top:12px}
+@media(max-width:880px){.mob-toggle{display:flex}}
+
+/* ── LIGHTBOX ── */
+.lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out}
+.lb.open{display:flex}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:2px;pointer-events:none}
+.lb-close{position:absolute;top:20px;right:28px;font-size:36px;color:#fff;cursor:pointer;line-height:1;opacity:.6;user-select:none}
+.lb-close:hover{opacity:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:48px;color:#fff;cursor:pointer;opacity:.45;user-select:none;padding:10px 20px;z-index:2}
+.lb-nav:hover{opacity:1}
+.lb-prev{left:8px}
+.lb-next{right:8px}
+
+/* ── FADE-IN ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+
+/* USHAŞ admin ergonomics */
+.align-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.align-btn{min-width:0;white-space:normal;padding:7px 5px}.lb-row,.lb-row1,.lb-row>*{min-width:0}.fld input,.fld textarea,.fld select{max-width:100%;box-sizing:border-box}
+
+/* ADMIN EDITOR: predictable width controls and live preview text flow */
+.lb-canvas-inner{box-sizing:border-box}
+.lb-text-zone{box-sizing:border-box;min-width:0;overflow:hidden}
+.align-btns{display:flex;flex-wrap:wrap;gap:4px}
+.align-btn{width:auto;min-width:34px;padding:0 6px;white-space:normal}
+
+/* COP31 Cloudflare Pages deployment fixes: asset-safe logo and portrait kiosk layout */
+html.kiosk-portrait, html.kiosk-portrait body{width:100%;max-width:100%;overflow-x:hidden}
+html.kiosk-portrait .topin{padding-left:clamp(16px,3vw,36px);padding-right:clamp(16px,3vw,36px);gap:10px}
+html.kiosk-portrait .logo-wrap img{height:auto!important;max-height:48px;max-width:min(44vw,230px);width:auto}
+html.kiosk-portrait .nav-links{gap:clamp(8px,1.4vw,18px);font-size:clamp(9px,1vw,12px)}
+html.kiosk-portrait .wrap{width:calc(100% - 36px);max-width:100%}
+html.kiosk-portrait .hero{height:auto;min-height:calc(100dvh - 78px);height:100dvh;min-height:100dvh;align-items:flex-end}
+html.kiosk-portrait .hero-in{padding:0 22px 70px;width:100%;max-width:100%}
+html.kiosk-portrait .hero h1{font-size:clamp(42px,7.2vw,82px);line-height:.98;letter-spacing:-.04em;overflow-wrap:anywhere;max-width:100%}
+html.kiosk-portrait .hero .sub{font-size:clamp(16px,1.9vw,22px);max-width:100%;line-height:1.5}
+html.kiosk-portrait .sec{padding:clamp(44px,6vh,92px) 0}
+html.kiosk-portrait .sec-in{width:calc(100% - 36px)!important;max-width:100%!important}
+html.kiosk-portrait .sec h2{font-size:clamp(30px,5.3vw,58px)!important;line-height:1.02!important;letter-spacing:-.035em!important;overflow-wrap:anywhere}
+html.kiosk-portrait .sec .body p,html.kiosk-portrait .sec .sec2{font-size:clamp(15px,1.8vw,20px)!important;line-height:1.55!important;overflow-wrap:anywhere}
+html.kiosk-portrait .sec-in [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important;gap:22px!important}
+html.kiosk-portrait .sec-in img,html.kiosk-portrait .sec-in video{max-width:100%;height:auto;object-fit:contain}
+html.kiosk-portrait .sec-in .fg-el{position:relative;left:auto!important;right:auto!important;top:auto!important;width:100%!important;height:auto!important;max-height:42vh;object-fit:contain;margin:18px auto 0}
+html.kiosk-portrait .gal{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+html.kiosk-portrait .topbar{background:rgba(11,12,14,.94);backdrop-filter:blur(12px)}
+html.kiosk-portrait .topin{height:auto;min-height:72px;flex-wrap:wrap}
+html.kiosk-portrait .nav-links{flex-wrap:wrap;justify-content:flex-end}
+html.kiosk-portrait .nav-links a{white-space:nowrap}
+html.kiosk-portrait .nav-cta{padding:8px 10px;font-size:10px}
+html.kiosk-portrait .arc-dialog{width:100%;max-width:100%;height:94dvh;max-height:94dvh}
+@media (orientation:portrait) and (min-height:1200px){
+ html.kiosk-portrait .topin{padding:14px 18px;min-height:96px}
+ html.kiosk-portrait .logo-wrap img{max-width:42vw;max-height:52px}
+ html.kiosk-portrait .nav-links{width:100%;justify-content:center;gap:10px;font-size:10px}
+ html.kiosk-portrait .hero-in{padding:0 28px 80px}
+ html.kiosk-portrait .hero h1{font-size:clamp(54px,7vw,78px)}
+ html.kiosk-portrait .sec-in{width:calc(100% - 48px)!important}
+}
+@media(max-width:720px){
+ html.kiosk-portrait .topin{height:auto;min-height:70px;padding:10px 14px;flex-wrap:wrap}
+ html.kiosk-portrait .logo-wrap img{max-width:42vw;max-height:40px}
+ html.kiosk-portrait .nav-links{width:100%;justify-content:center;gap:8px;font-size:9px}
+ html.kiosk-portrait .hero-in{padding:0 18px 48px}
+ html.kiosk-portrait .sec-in{width:calc(100% - 28px)!important}
+ html.kiosk-portrait .gal{grid-template-columns:1fr 1fr!important}
+}
+
+</style>
+<script>try{if(new URLSearchParams(location.search).get("kiosk")==="1"){document.documentElement.classList.add("kiosk-portrait");}}catch(e){}</script>
+</head>
+<body class="">
+<header class="topbar" id="tb">
+  <div class="topin wrap" style="width:100%;max-width:100%;padding:0 40px">
+    <a class="logo-wrap" href="#"><img src="uploads/ushas-logo-tr.png" alt="USHAŞ - Uluslararası Sağlık Hizmetleri A.Ş." style="height:42px;max-width:230px;width:auto;object-fit:contain;display:block"></a>
+    <nav class="nav-links">
+      <a href="#sec-1790930332785"><span class="i18n-tr">TÜRKİYE</span><span class="i18n-en">TÜRKİYE</span></a><a href="#brand"><span class="i18n-tr">HEALTHTÜRKİYE®</span><span class="i18n-en">HEALTHTÜRKİYE®</span></a><a href="#sec-1790932047718"><span class="i18n-tr">NEDEN HEALTHTÜRKİYE®</span><span class="i18n-en">WHY HEALTHTÜRKİYE</span></a><a href="#sec-1790938568256"><span class="i18n-tr">SAĞLIK SİSTEMİ</span><span class="i18n-en">HEALTHCARE SYSTEM</span></a><a href="#sec-1790938922877"><span class="i18n-tr">KALİTE VE AKREDİTASYON</span><span class="i18n-en">QUALİTY AND ACCREDİTATİON</span></a><a href="#sec-1790939508000"><span class="i18n-tr">SAĞLIK TURİZMİ</span><span class="i18n-en">MEDICAL TOURISM</span></a><a href="#sec-1790940275159"><span class="i18n-tr">ŞEHİR HASTANELERİ</span><span class="i18n-en">CITY HOSPITALS</span></a>
+      <a class="nav-cta" href="#contact"><span class="i18n-tr">İLETİŞİM</span><span class="i18n-en">CONTACT</span></a>
+      
+  <div class="fl-switch" id="fl-switch">
+    <button class="fl-btn on" id="fl-tr" onclick="flSet('tr')">TR</button>
+    <button class="fl-btn" id="fl-en" onclick="flSet('en')">EN</button>
+  </div>
+    </nav>
+  </div>
+  <button class="mob-toggle" id="mob-toggle" onclick="(function(){var t=document.getElementById('mob-toggle'),n=document.getElementById('mob-nav');var o=n.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';})()" aria-label="Menü"><span></span><span></span><span></span></button>
+</header>
+<nav class="mob-nav" id="mob-nav">
+  <a href="#sec-1790930332785" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">TÜRKİYE</span><span class="i18n-en">TÜRKİYE</span></a><a href="#brand" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">HEALTHTÜRKİYE®</span><span class="i18n-en">HEALTHTÜRKİYE®</span></a><a href="#sec-1790932047718" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">NEDEN HEALTHTÜRKİYE®</span><span class="i18n-en">WHY HEALTHTÜRKİYE</span></a><a href="#sec-1790938568256" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">SAĞLIK SİSTEMİ</span><span class="i18n-en">HEALTHCARE SYSTEM</span></a><a href="#sec-1790938922877" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">KALİTE VE AKREDİTASYON</span><span class="i18n-en">QUALİTY AND ACCREDİTATİON</span></a><a href="#sec-1790939508000" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">SAĞLIK TURİZMİ</span><span class="i18n-en">MEDICAL TOURISM</span></a><a href="#sec-1790940275159" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">ŞEHİR HASTANELERİ</span><span class="i18n-en">CITY HOSPITALS</span></a>
+  <a class="nav-cta" href="#contact" onclick="document.getElementById('mob-nav').classList.remove('open');document.getElementById('mob-toggle').classList.remove('open');document.body.style.overflow=''"><span class="i18n-tr">İLETİŞİM</span><span class="i18n-en">CONTACT</span></a>
+  <div class="mob-lang"><button class="fl-btn on" id="mob-fl-tr" onclick="flSet('tr')">TR</button><button class="fl-btn" id="mob-fl-en" onclick="flSet('en')">EN</button></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-ov"></div>
+  <div class="hero-grad"></div>
+  <video class="vbg" src="uploads/HealthT-rkiye_74sn.mp4" autoplay muted loop playsinline></video>
+  <div class="hero-in">
+    <div class="kicker"><span class="i18n-tr">HealthTürkiye</span><span class="i18n-en">HealthTürkiye</span></div>
+    <h1><span class="i18n-tr">Türkiye’de<br>Sağlığı<br>Keşfedin</span><span class="i18n-en">In Türkiye<br>Health<br>Discover</span></h1>
+    <p class="sub"><span class="i18n-tr">Sağlık Türkiye'nin Küresel Markası</span><span class="i18n-en">Türkiye’s Global Brand in Healthcare</span></p>
+    <a class="hero-cta" href="#first-section"><span class="i18n-tr">TÜRKİYE’DE SAĞLIĞI KEŞFEDİN</span><span class="i18n-en">DISCOVER HEALTH IN TÜRKİYE</span></a>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<section class="sec story sec-align-right" id="sec-1790930332785" style="padding:130px 0 130px;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.18)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1584px;--sec-body-align:justify;width:100% !important;max-width:1584px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-lh:1.08;--sec-h-ls:0px;--sec-h-fw:900;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <div class="kicker"><span class="i18n-tr">TÜRKİYE</span><span class="i18n-en">TÜRKİYE</span></div>
+          <div class="mspl">
+            <div class="mspl-copy"><h2><span class="i18n-tr">Sağlıkta Türkiye'nin Küresel Markası</span><span class="i18n-en">Türkiye's Global Brand in Healthcare</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Avrupa ile Asya’nın kesişme noktasında yer alan Türkiye, asırlık şifa geleneklerinin ileri düzey tıbbi yeniliklerle birleştiği bir geçiş noktası işlevi görmektedir. Son teknoloji sağlık altyapısı, uluslararası akreditasyona sahip hastaneleri ve yüksek nitelikli sağlık personeli ile Türkiye, sağlık turizmi alanında dünyanın önde gelen destinasyonlarından biri haline gelmiştir. Türkiye, termal tedaviler ve sağlıklı yaşam programlarından karmaşık cerrahi işlemlere kadar uzanan geniş bir hizmet yelpazesi sunarak kalite, erişilebilirlik ve maliyet etkinliğinin benzersiz bir birleşimini sağlamaktadır.</span><span class="i18n-en">Positioned at the intersection of Europe and Asia, Türkiye serves as a gateway where centuries-old healing traditions converge with advanced medical innovation. With its state-of-the-art health infrastructure, internationally accredited hospitals, and highly qualified medical workforce, Türkiye has emerged as one of the world’s foremost destinations for health tourism. Türkiye provides an extensive spectrum of services ranging from thermal therapies and wellness programs to complex surgical procedures offering a distinctive combination of quality, accessibility, and cost-effectiveness.</span></p></div></div>
+            <div class="mspl-media"><video src="uploads/HealthT-rkiye_74sn.mp4" autoplay muted loop playsinline controls preload="metadata"></video></div>
+          </div>
+        </div>
+      </section>
+<section class="sec story sec-align-left" id="sec-1790930778229" style="padding:20px 0 130px;background:#ffffff;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.18)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1571px;--sec-body-align:justify;width:100% !important;max-width:1571px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-color:#0B0C0E;--sec-t-color:#3a3a3a;--sec-k-color:#C8102E;--sec-h-lh:1.14;--sec-h-ls:-4px;--sec-h-fw:900;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <h2><span class="i18n-tr">Türkiye’nin Sağlık Turizmindeki Başlıca Güçlü Yönleri</span><span class="i18n-en">Türkiye’s Key Strengths in Health Tourism</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Türkiye’nin küresel sağlık turizmi sektöründe giderek artan önemi, yenilikçiliğe, klinik mükemmelliğe ve entegre hizmet sunumuna verdiği önemi yansıtmakta ve ülkeyi, yüksek kaliteli bakım arayan uluslararası hastalar için tercih edilen bir seçenek haline getirmektedir.</span><span class="i18n-en">Türkiye’s growing prominence in the global health tourism sector reflects its dedication to innovation, clinical excellence, and integrated service delivery positioning the country as a preferred choice for international patients seeking high-quality care.</span></p></div><div class="feat-grid feat-cols-2"><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Joint Commission International (JCI) tarafından akredite edilmiş hastaneler ve dünya çapında kabul gören sağlık hizmeti standartları</span><span class="i18n-en">Hospitals accredited by the Joint Commission International (JCI), meeting globally recognised standards of care</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Yapay zekâ destekli tanı sistemleri ve robotik cerrahi teknolojileri ile artırılmış klinik hassasiyet</span><span class="i18n-en">AI-assisted diagnostics and robotic surgery systems enhancing clinical precision</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Kısa bekleme süreleri ve kapsamlı, tüm hizmetleri içeren tedavi paketleri</span><span class="i18n-en">Short waiting periods and comprehensive, all-inclusive treatment packages</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Birçok ülke vatandaşı için vizesiz giriş imkânı ve geniş uluslararası uçuş bağlantıları</span><span class="i18n-en">Visa-free entry for many nationalities and broad international flight connectivity</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Çok dilli Uluslararası Hasta Birimleri aracılığıyla sağlık hizmetinin tüm aşamalarında kişiye özel destek</span><span class="i18n-en">Multilingual International Patient Units providing personalised support throughout the care pathway</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">HealthTürkiye® – T.C. Sağlık Bakanlığı iş birliğiyle USHAŞ tarafından işletilen resmî uluslararası hasta yönlendirme platformu</span><span class="i18n-en">HealthTürkiye® – the official patient navigation platform operated by USHAŞ in partnership with the Ministry of Health.</span></span>
+        </div></div>
+        </div>
+      </section>
+<section class="sec story sec-align-left" id="brand" style="padding:130px 0 130px;">
+        <div class="sec-bg" style="background:url('/uploads/Resim1.png') center center/cover no-repeat;" data-parallax="30"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.15)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1504px;--sec-body-align:justify;width:100% !important;max-width:1504px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-color:#ffffff;--sec-t-color:#ffffff;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <div class="kicker"><span class="i18n-tr">HEALTHTÜRKİYE®</span><span class="i18n-en">HEALTHTÜRKİYE®</span></div>
+          <div class="mspl">
+            <div class="mspl-copy"><h2><span class="i18n-tr">HealthTürkiye Resmi Hasta Yönlendirme Platformu</span><span class="i18n-en">Healthtürkiye The Official Patient Navigation Platform</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">HealthTürkiye® (www.healthturkiye.gov.tr), uluslararası hastaların Türkiye’nin dünya standartlarındaki sağlık hizmetleri ekosistemine kesintisiz erişimini sağlayan resmî dijital sağlık platformu olarak hayata geçirilmiştir. USHAŞ tarafından T.C. Sağlık Bakanlığı ve T.C. Kültür ve Turizm Bakanlığı iş birliğiyle geliştirilen platform; tedavi planlaması, sağlık tesisi seçimi ve uçtan uca hasta desteği süreçlerinde uluslararası hastalara kapsamlı bir dijital hizmet sunmaktadır.</span><span class="i18n-en">HealthTürkiye® ( www.healthturkiye.gov.tr ) has been officially launched as the primary digital gateway providing international patients with seamless access to Türkiye’s world-class healthcare ecosystem. 
+
+The platform, developed by USHAŞ in cooperation with the Ministry of Health of the Republic of Türkiye and the Ministry of Culture and Tourism of the Republic of Türkiye serves as a comprehensive portal for treatment planning, facility selection, and end-to-end patient support. 
+</span></p></div></div>
+            <div class="mspl-media"><video src="uploads/HealthT-rkiye-Your-Official-Gateway-to-International-Health-Services-in-T-rkiye---HealthT-rkiye-1080p.mp4" autoplay muted loop playsinline controls preload="metadata"></video></div>
+          </div>
+        </div>
+      </section>
+<section class="sec story sec-align-left" id="sec-1790932047718" style="padding:87px 0 130px;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.18)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1508px;--sec-body-align:left;width:100% !important;max-width:1508px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-size:18px;--sec-h-lh:1.65;--sec-h-ls:0px;--sec-h-fw:900;--sec-body-align:left;--sec-body-align-fallback:left;">
+          <div class="kicker"><span class="i18n-tr">NEDEN HEALTHTÜRKİYE®</span><span class="i18n-en">WHY HEALTHTÜRKİYE</span></div><h2><span class="i18n-tr">Neden HealthTürkiye® ?<br></span><span class="i18n-en">Why HealthTürkiye ? <br></span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:left!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">HealthTürkiye®, sadece bir bilgi merkezi olarak değil, aynı zamanda tam entegre bir hasta yönlendirme platformu olarak da hizmet vermektedir. İleri düzey tıbbi hizmetleri turizm dostu destek mekanizmalarıyla bir araya getirerek, uluslararası hastaların Türkiye’deki sağlık hizmetlerine güvenle erişmelerini ve ülkenin saygın sağlık sistemi tarafından her aşamada yönlendirilmelerini sağlamaktadır.</span><span class="i18n-en">HealthTürkiye® serves not just as an information hub, but as a fully integrated patient navigation platform. By uniting advanced medical services with tourism-friendly support mechanisms, it enables international patients to access healthcare in Türkiye with confidence, guided at every stage by the country’s highly regarded health system.</span></p></div><div class="feat-grid feat-cols-2"><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Türkiye genelindeki akredite sağlık kuruluşlarını ve alanında uzman, nitelikli hekimleri içeren güvenilir veri tabanı,</span><span class="i18n-en">A trusted database featuring accredited healthcare institutions and highly qualified specialist physicians across Türkiye; </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Tedavi planlaması, hastaneye kabul, konaklama, transfer ve tedavi sonrası takip süreçlerini kapsayan adım adım rehberlik,</span><span class="i18n-en">Step-by-step guidance covering treatment planning, admission, accommodation, transfers, and follow-up care; </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Sağlık hizmeti yolculuğu boyunca hastalara destek sağlayan çok dilli, 7/24 çağrı merkezi (İngilizce, Arapça, Rusça, Fransızca, Almanca ve Farsça),</span><span class="i18n-en">A multilingual 24/7 call centre (English, Arabic, Russian, French, German, Persian) supporting patients throughout their healthcare journey; </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Seyahat sürecini kolay ve sorunsuz hâle getirmek üzere tasarlanmış entegre vize danışmanlığı ve uçuş planlama araçları,</span><span class="i18n-en">Integrated visa assistance and flight planning tools designed to facilitate smooth and efficient travel; </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">T.C. Sağlık Bakanlığı güvencesi ve yetkisi altında sunulan şeffaf fiyatlandırma, akredite sağlık tesisleri ve doğrulanmış bilgiler.</span><span class="i18n-en">Transparent pricing, accredited facilities, and verified information guaranteed under the authority of the Ministry of Health. </span></span>
+        </div></div>
+        </div>
+      </section>
+<section class="sec story sec-align-center" id="sec-1790938568256" style="padding:99px 0 130px;background:#C8102E;">
+        <div class="sec-bg" style="" data-parallax="80"></div>
+        <video class="sec-vbg" src="uploads/Avrupa-n-n-en-b-y-k-hastanesi-Ankara-ehir-Hastanesi-14-Mart-T-p-Bayram-nda-a-l-yor.mp4" autoplay muted loop playsinline></video>
+        <div class="sec-ov" style="background:rgba(0,0,0,0.69)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1493px;--sec-body-align:justify;width:100% !important;max-width:1493px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-color:#ffffff;--sec-t-color:rgba(255,255,255,0.88);--sec-k-color:rgba(255,255,255,0.7);--sec-h-size:46px;--sec-h-lh:1.30;--sec-h-ls:0px;--sec-h-fw:900;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <div class="kicker"><span class="i18n-tr">SAĞLIK SİSTEMİ</span><span class="i18n-en">HEALTHCARE SYSTEM</span></div>
+          <div class="stmt" style="width:100%;max-width:1493px;margin-left:auto;margin-right:auto;box-sizing:border-box"><h2><span class="i18n-tr">Türkiye’nin Sağlık Sistemi</span><span class="i18n-en">Türkiye’s Healthcare System</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Türkiye, son çeyrek asırda sağlık alanında tarihî bir gelişim gerçekleştirmiş; altyapısı, insan kaynağı, dijital kapasitesi ve yerli üretim hamleleriyle dünyanın dikkatle takip ettiği bir sağlık sistemine kavuşmuştur. Bu süreçte mevcut hastanelerin yaklaşık yüzde 80’I yenilenmiş veya yeniden inşa edilmiştir. Fiziki yapılarından teçhizatlarına kadar bütünüyle modernize edilmiştir. Bugün  ülkemizde 1.550’den fazla hastaneyle kesintisiz olarak sağlık hizmeti sunulmaktadır. Nitelikli yatak kapasitemiz 18 binden 184 binin üzerine çıkarken, yoğun bakım yatak sayımız 2 binlerden 48 binin üzerine ulaşmıştır. Kamu, üniversite ve özel sektör sağlık kuruluşlarımızla birlikte bugün ülke genelinde 271 bini aşkın yatak kapasitesi ve 1,5 milyonu aşkın sağlık çalışanıyla hizmet verilmektedir. Sağlık tesisleri inşa edilirken afetlere karşı dayanıklılık da temel önceliklerden biri olarak ele alınmıştır. Hastaneler deprem başta olmak üzere olası afetlere karşı dirençli, sismik izolatörlü ve son teknoloji yapı sistemleriyle güçlendirilmiştir. Bu adımlarla olası afet anlarında kesintisiz hizmet sunabilecek güvenli yapılar oluşturulmuştur. “Sağlıkta Dönüşüm Programı” ile insan odaklı, daha erişilebilir ve sürdürülebilir bir sistem inşa edilmiştir. Türkiye artık altyapısından insan kaynağına, koruyucu sağlık hizmetlerinden ileri teknoloji sağlık yatırımlarına kadar her alanda güçlü ve örnek alınan bir seviyeye ulaşmıştır.</span><span class="i18n-en">Over the past quarter of a century, Türkiye has achieved historic advances in the field of healthcare; developing a health system closely followed by the world through its infrastructure, human resources, digital capacity, and domestic production initiatives.
+
+During this process, approximately 80 per cent of existing hospitals have been renovated or rebuilt. They have been fully modernised, from their physical structures to their equipment. Today, healthcare services are provided continuously across more than 1,550 hospitals in our country.
+
+Our qualified bed capacity has risen from 18,000 to over 184,000, whilst our number of intensive care beds has increased from 2,000 to over 48,000. Together with our public, university and private sector healthcare institutions, services are now provided nationwide with a bed capacity exceeding 271,000 and over 1.5 million healthcare workers.
+
+Resilience against disasters has been treated as one of the key priorities in the construction of healthcare facilities. Hospitals have been reinforced with state-of-the-art structural systems, including seismic isolators, to ensure they are resilient against potential disasters, primarily earthquakes. These measures have established safe structures capable of providing uninterrupted service in the event of a disaster.
+
+Through the “Health Transformation Program”, a people-centred, more accessible and sustainable system has been established. Türkiye has now reached a strong and exemplary level across all areas, from infrastructure and human resources to preventive healthcare services and advanced technology healthcare investments.
+</span></p></div></div>
+        </div>
+      </section>
+<section class="sec story sec-align-left" id="sec-1790938922877" style="padding:130px 0 130px;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.18)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1504px;--sec-body-align:justify;width:100% !important;max-width:1504px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-size:27px;--sec-h-lh:0.93;--sec-h-ls:-5px;--sec-h-fw:900;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <div class="kicker"><span class="i18n-tr">KALİTE VE AKREDİTASYON</span><span class="i18n-en">QUALİTY AND ACCREDİTATİON</span></div>
+          <div class="mspl mspl-flip">
+            <div class="mspl-copy"><h2><span class="i18n-tr">Kalite ve Akreditasyon</span><span class="i18n-en">Quality and Accreditation</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Türkiye hükümeti sağlık sektörüne yatırım yapmakta ve ülkedeki sağlık hizmetlerinin kalitesini ve erişilebilirliğini artırmak için politikalar uygulamaktadır. USHAŞ'ın temel amacı, Türkiye'de uluslararası sağlık hizmetleri alanında verilen hizmetleri tanıtmaktır. Sağlık turizmi konusunda iyi tanımlanmış bir yapının çerçevesini çizmek ve hizmetler ile uluslararası hastalar arasında uyum sağlamak için Sağlık Bakanlığı ile yakın bir şekilde çalışıyoruz. USHAŞ, kamu ve özel sektörün sağlık turizmini teşvik etme çabalarının koordine edilmesine yardımcı olmakta ve Bakanlığa bu tür hizmetlere yönelik politika ve stratejilerin yanı sıra hizmet sunum standartları ve akreditasyon standartları konusunda tavsiyelerde bulunmaktadır.</span><span class="i18n-en">The government of Türkiye has been investing in the healthcare sector and has been implementing policies to improve the quality and accessibility of healthcare in the country. The main goal of USHAŞ is to promote the services provided in the area of international health services in Türkiye. We closely work with the Ministry of Health to frame a well-defined structure on health tourism should be established to bring harmony between services and international patients. USHAŞ assists in coordinating the public and private sectors' efforts to promote health tourism, and provides advice to the Ministry on policies and strategies for such services as well as service delivery standards and accreditation standards.</span></p></div></div>
+            <div class="mspl-media"><video src="uploads/HealthTurkiye-Saglik-Turizmi-Yetki-Belgesi.mp4" autoplay muted loop playsinline controls preload="metadata"></video></div>
+          </div>
+        </div>
+      </section>
+<section class="sec story sec-align-center" id="sec-1790939508000" style="padding:130px 0 130px;background:#C8102E;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        
+        <div class="sec-ov" style="background:rgba(0,0,0,0.18)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1505px;--sec-body-align:left;width:100% !important;max-width:1505px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-color:#ffffff;--sec-t-color:rgba(255,255,255,0.88);--sec-k-color:rgba(255,255,255,0.7);--sec-h-lh:1.01;--sec-h-ls:0px;--sec-h-fw:900;--sec-body-align:left;--sec-body-align-fallback:left;--feat-item-bg:rgba(255,255,255,.12);--feat-item-accent:rgba(255,255,255,.5);--feat-item-color:rgba(255,255,255,.95);">
+          <div class="kicker"><span class="i18n-tr">SAĞLIK TURİZMİ</span><span class="i18n-en">MEDICAL TOURISM</span></div><h2><span class="i18n-tr">SAĞLIK TURİZMİ</span><span class="i18n-en">HEALTH TOURISM</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:left!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Türkiye; gelişmiş altyapısı, üstün teknolojisi ve alanında uzman sağlıkprofesyonelleri ile küresel sağlık turizminin öncü merkezleri arasında yeralmaktadır. Uluslararası standartlarda sunduğu yüksek kaliteli hizmetleri uygunmaliyetlerle buluşturan ülkemiz, hastalarına tanı ve tedavi süreçlerinde asgaribekleme süresi avantajı sunar. Coğrafi konumu ve geniş ulaşım ağı sayesindedünyanın dört bir yanından kolayca erişilebilen Türkiye, sunduğu ayrıcalıklıolanaklarla güvenli ve konforlu bir sağlık yolculuğu vadeder</span><span class="i18n-en">Türkiye ranks among the leading centers of global medical tourism thanks to its advanced infrastructure, cutting-edge technology, and healthcare professionals who are experts in their fields. By combining high-quality services that meet international standards with affordable costs, our country offers patients the advantage of minimal wait times during diagnosis and treatment. Thanks to its geographic location and extensive transportation network, Turkey is easily accessible from all corners of the world and promises a safe and comfortable healthcare journey with its exclusive amenities.</span></p></div><div class="feat-grid feat-cols-3"><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Coğrafi Konum</span><span class="i18n-en">Geographical location</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Modern Tıp Teknolojisi</span><span class="i18n-en">Modern Medical Technology</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Nitelikli Doktorlar ve Sağlık Profesyonelleri</span><span class="i18n-en">Qualified Doctors and Healthcare Professionals</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Kaliteli Hizmet </span><span class="i18n-en">Quality Service </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Dil Engeli Olmadan Sağlık Hizmetlerine Erişim</span><span class="i18n-en">Access to Health Care Without Language Barriers</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Medikal Vize Kolaylığı</span><span class="i18n-en">Medical Visa Facilitation</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">200’den Fazla Noktadan Direkt Uçuş </span><span class="i18n-en">Direct Flights from Over 200 Destinations </span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Zengin ve Çeşitli Turistik Aktiviteler</span><span class="i18n-en">A Rich and Diverse Range of Tourist Activities</span></span>
+        </div><div class="feat-item">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label"><span class="i18n-tr">Uygun Maliyetli Tedavi</span><span class="i18n-en">Affordable Treatment</span></span>
+        </div></div>
+        </div>
+      </section>
+<section class="sec story sec-align-center" id="sec-1790940275159" style="padding:130px 0 130px;background:#f5f5f5;">
+        <div class="sec-bg" style="" data-parallax="25"></div>
+        <video class="sec-vbg" src="uploads/Ba-ak-ehir-am-ve-Sakura-ehir-Hastanesi-T.mp4" autoplay muted loop playsinline></video>
+        <div class="sec-ov" style="background:rgba(0,0,0,0.87)"></div>
+        <div class="wrap sec-in" style="--sec-text-width:100%;--sec-content-width:1508px;--sec-body-align:justify;width:100% !important;max-width:1508px !important;margin-left:auto;margin-right:auto;box-sizing:border-box;position:relative;left:0%;top:0px;--sec-h-color:#ffffff;--sec-t-color:#ffffff;--sec-k-color:#C8102E;--sec-h-lh:1.07;--sec-h-ls:-4px;--sec-h-fw:900;--sec-body-align:justify;--sec-body-align-fallback:justify;">
+          <div class="kicker"><span class="i18n-tr">ŞEHİR HASTANELERİ</span><span class="i18n-en">CITY HOSPITALS</span></div>
+          <div class="stmt" style="width:100%;max-width:1508px;margin-left:auto;margin-right:auto;box-sizing:border-box"><h2><span class="i18n-tr">Türkiye'nin Şehir Hastaneleri Programı</span><span class="i18n-en">Türkiye's City Hospitals Program</span></h2><div class="body" style="width:100%;max-width:100%;min-width:0"><p style="display:block;width:100%;max-width:100%;box-sizing:border-box;text-align:justify!important;text-align-last:auto;overflow-wrap:break-word;"><span class="i18n-tr">Türkiye, güçlü şehir hastaneleri altyapısı, nitelikli sağlık profesyonelleri ve gelişmiş tıp teknolojileriyle küresel sağlık turizminin en önemli aktörlerinden biridir.
+
+Yüksek teknolojik donanımları ve geniş kapasiteleriyle yalnızca birer tedavi merkezi olmanın ötesine geçen şehir hastaneleri; tıp dünyasındaki yeniliklerin Ar-Ge süreçleriyle harmanlandığı küresel birer bilim ve sağlık üssü misyonunu üstlenmiştir. Nitelikli uzmanların yönetimindeki bu vizyoner komplekslerde, en karmaşık vakalar ve en zorlu hastalıklar üst düzey konforla çözüme kavuşturulmaktadır. 
+
+Ülkemizde hâlihazırda 43 bin 325 yatak kapasiteli 29 şehir hastanesi hizmet vermektedir. En büyüğü 4 bin 50 yataklı Sancaktepe Şehir Hastanesi olmak üzere, toplam 13 bin 390 yataklı 11 şehir hastanesinin inşaatı ise devam etmektedir. Tıbbi cihaz üretimi ve yenilikçi tedavi süreçlerinde ulaşılan yüksek yerli üretim kapasitesi de Türkiye’nin bu alandaki stratejik gücünü pekiştirmektedir.
+
+2022 yılında hayata geçirilen HealthTürkiye (www.healthturkiye.gov.tr) ise ülkenin sağlık turizmi alanındaki küresel çatı markası ve resmi sağlık portalıdır. Sağlık Bakanlığı ve USHAŞ (Uluslararası Sağlık Hizmetleri A.Ş.) iş birliğiyle yürütülen bu platform; şehir hastanelerini, kamu hastanelerini, vakıf hastanelerini, özel hastaneleri ve diğer tüm yetkili, nitelikli sağlık tesisleri ile aracı kuruluşları tek bir çatı altında dünyaya açmaktadır. Uluslararası hastalar portal üzerinden geniş hastane ve doktor veri tabanına erişerek tedavi planlarını seçebilmekte ve doğrudan iletişim kurabilmektedir.
+
+Sistem bünyesinde, yabancı hastalara 6 farklı dilde ve 7/24 kesintisiz hizmet sunan uluslararası bir hasta çağrı merkezi yer almaktadır. HealthTürkiye, sunduğu bu entegre dijital ekosistemle hastaların tedavi öncesi, sırası ve sonrasındaki tüm süreçlerini güvence altına almaktadır. Portalda yalnızca Sağlık Bakanlığı tarafından uluslararası sağlık turizmi yetki belgesi verilmiş, yüksek kalite ve güvenlik standartlarına sahip akredite tesisler listelenmektedir. Böylece hastalar; ameliyat süreçlerinden konaklama ve transfere kadar her aşamayı şeffaf bir şekilde takip edebilmektedir.
+
+Bu dijital ve hukuki güvencelerin yanı sıra, Türkiye'ye tedavi amaçlı gelecek kişilere sağlanan medikal vize kolaylıkları, hızlı onay süreçleri, e-vize entegrasyonu ve Türk Hava Yolları (THY) indirim olanağı ile hastaların ihtiyaç duydukları güvenli sağlık hizmetine en kısa sürede ve sorunsuzca ulaşmalarını sağlamaktadır.
+
+Devlet güvencesi, yasal denetim mekanizmaları ve USHAŞ'ın koordinasyon altyapısı sayesinde, Türkiye’yi tercih eden sağlık turistleri yalnızca dünya standartlarında bir tedaviye değil, aynı zamanda baştan uca güvenli ve hukuki koruma altında bir deneyime sahip olmaktadır. Türkiye, bu sayede küresel sağlık turizminde mutlak güvenin adresi konumundadır.
+</span><span class="i18n-en">Türkiye is one of the leading players in global health tourism, with its robust city hospital infrastructure, highly qualified healthcare professionals, and advanced medical technologies. Going beyond their role as treatment centres, city hospitals, with their state-of-the-art equipment and extensive capacities, have assumed the mission of global hubs of science and healthcare, where medical innovations are integrated with research and development (R&amp;D) processes. In these visionary complexes, managed by highly qualified specialists, the most complex cases and challenging diseases are treated with the highest standards of comfort and care.
+
+Türkiye currently operates 29 city hospitals with a total bed capacity of 43,325. Construction is underway on 11 additional city hospitals, with a combined capacity of 13,390 beds, including Sancaktepe City Hospital, which will be the largest, with 4,050 beds. Türkiye’s strong domestic production capacity in medical devices and innovative treatment technologies further reinforces its strategic position in this field.
+
+Launched in 2022, HealthTürkiye (www.healthturkiye.gov.tr) is Türkiye’s official health tourism portal and overarching global brand for the country’s health tourism sector. Operated through the collaboration of the Ministry of Health and USHAŞ (International Health Services Inc.), the platform provides a global gateway for city hospitals, public hospitals, foundation hospitals, private hospitals, and all other authorised and qualified healthcare facilities and intermediary organisations. Through the portal, international patients can access an extensive database of hospitals and physicians, explore treatment options, and establish direct contact with healthcare providers.
+
+The platform also features an international patient call centre that provides uninterrupted, 24/7 assistance to international patients in six different languages. Through this integrated digital ecosystem, HealthTürkiye supports patients throughout every stage of their healthcare journey, before, during, and after treatment.
+
+Only accredited facilities that have been granted an International Health Tourism Authorisation Certificate by the Ministry of Health and meet high standards of quality and safety are listed on the portal. This enables patients to follow every stage of their healthcare journey transparently, from surgical procedures to accommodation and transportation.
+
+In addition to these digital and legal safeguards, Türkiye facilitates access to healthcare for international patients through medical visa arrangements, expedited approval processes, e-Visa integration, and discount opportunities offered by Turkish Airlines (THY). These measures help patients access the safe, high-quality healthcare they need as quickly and seamlessly as possible.
+
+With state-backed assurances, legal oversight mechanisms, and the coordination infrastructure provided by USHAŞ, international patients choosing Türkiye benefit not only from world-class medical treatment but also from an end-to-end healthcare experience supported by comprehensive safety measures and legal protections. Through this integrated approach, Türkiye continues to strengthen its position as a trusted global destination for health tourism.</span></p></div></div>
+        </div>
+      </section>
+<section class="sec redband" id="contact">
+    <div class="sec-ov" style="background:linear-gradient(135deg,#C8102E,#FF3542);opacity:.95"></div>
+    <div class="wrap sec-in">
+      <div class="kicker" style="color:rgba(255,255,255,0.8)"><span class="i18n-tr">İLETİŞİM</span><span class="i18n-en">CONTACT</span></div>
+      <div class="ct-grid">
+        <div class="ct-copy">
+          <h2><span class="i18n-tr">Sağlıkta<br>Türkiye'nin<br>Küresel Markası</span><span class="i18n-en">Let's talk<br>global<br>health.</span></h2>
+          <p><span class="i18n-tr">Türkiye’nin sağlık hizmetleri ve sağlık turizmi hakkında bilgi almak için bizimle iletişime geçin.</span><span class="i18n-en">Reach our team for international media enquiries.</span></p>
+        </div>
+        <div class="ct-card">
+          <div class="cc-name">HealthTürkiyes®</div>
+          <div class="cc-role"><span class="i18n-tr">INTERNATIONAL MEDIA CONTACT</span><span class="i18n-en">INTERNATIONAL MEDIA CONTACT</span></div>
+          <div class="cc-line"><b>E-POSTA</b>info@healthturkiye.gov.tr</div>
+          <div class="cc-line"><b>TELEFON</b>0090 850 288 38 38 </div>
+          <div class="cc-line"><b>KURUM</b>HealthTürkiyes®</div>
+          <div class="cc-line"><b>WEB</b><a href="https://healthturkiye.gov.tr" target="_blank">https://healthturkiye.gov.tr</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="arc-modal" id="arc-modal" aria-hidden="true"><div class="arc-dialog" role="dialog" aria-modal="true"><div class="arc-dialog-head"><div><div class="arc-dialog-year" id="arc-modal-year"></div><h3 id="arc-modal-title"></h3></div><button class="arc-close" type="button" onclick="arcClose()">×</button></div><div class="arc-tabs" id="arc-tabs"></div><div class="arc-pane on" id="arc-pane-brochure"></div><div class="arc-pane" id="arc-pane-data"></div><div class="arc-pane" id="arc-pane-photos"></div><div class="arc-pane" id="arc-pane-videos"></div></div></div><div class="arc-lightbox" id="arc-lightbox" aria-hidden="true"><div class="arc-lightbox-stage"><button class="arc-lb-close" type="button" onclick="arcPhotoClose()" aria-label="Kapat">×</button><button class="arc-lb-prev" type="button" onclick="arcPhotoMove(-1)" aria-label="Önceki">‹</button><img id="arc-lb-img" src="" alt=""><button class="arc-lb-next" type="button" onclick="arcPhotoMove(1)" aria-label="Sonraki">›</button><div class="arc-lb-bottom"><span class="arc-lb-counter" id="arc-lb-counter"></span><span class="arc-lb-caption" id="arc-lb-caption"></span><a class="arc-lb-download" id="arc-lb-download" href="#" target="_blank" rel="noopener">↧</a></div></div></div>
+
+<footer>
+  <div class="footer-brand-image" style="display:flex;justify-content:center;align-items:center;width:100%;padding:18px 20px 24px"><img src="uploads/2222.png" alt="HealthTürkiye" loading="lazy" style="display:block;width:900px;height:auto;max-width:100%;object-fit:contain;object-position:center" ></div>
+  <div class="wrap foot">
+    <span>USHAŞ</span>
+    <span><span class="i18n-tr">ULUSLARARASI SAĞLIK HİZMETLERİ</span><span class="i18n-en">INTERNATIONAL HEALTH SERVICES</span></span>
+    <a href="https://healthturkiye.gov.tr" target="_blank">https://healthturkiye.gov.tr</a>
+  </div>
+</footer>
+
+<script>
+// Topbar scroll
+(function(){
+  let tb=document.getElementById('tb');
+  window.addEventListener('scroll',()=>tb.classList.toggle('sc',scrollY>70),{passive:true});
+})();
+
+// Parallax
+(function(){
+  let els=[...document.querySelectorAll('[data-parallax]')];
+  if(!els.length)return;
+  let tk=false;
+  function go(){
+    els.forEach(e=>{
+      let p=+e.dataset.parallax||0;
+      let r=e.parentElement.getBoundingClientRect();
+      let c=(r.top+r.height/2-innerHeight/2)/(innerHeight+r.height);
+      e.style.transform='translate3d(0,'+(c*p*.55)+'px,0)';
+    });
+    tk=false;
+  }
+  window.addEventListener('scroll',()=>{if(!tk){requestAnimationFrame(go);tk=true}},{passive:true});
+  go();
+})();
+
+// Frontend language switch — one DOM, one layout, no rebuild.
+(function(){
+  var META={tr:"USHAŞ x HealthTürkiye | COP31",en:"USHAŞ — International Health Tourism"};
+  var DESC={tr:"T.C. Sağlık Bakanlığı'nın ilgili kuruluşu.",en:"Affiliated institution of the Turkish Ministry of Health."};
+  window.flSet=function(l){
+    l=(l==='en')?'en':'tr';
+    document.documentElement.lang=l;
+    document.body.classList.toggle('lang-en',l==='en');
+    ['fl-tr','fl-en','mob-fl-tr','mob-fl-en'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.classList.toggle('on',id.endsWith('-'+l));
+    });
+    document.title=META[l];
+    var md=document.querySelector('meta[name="description"]');
+    if(md)md.setAttribute('content',DESC[l]);
+    try{localStorage.setItem('ushas_landing_lang',l)}catch(e){}
+  };
+  var initial='tr';
+  try{var saved=localStorage.getItem('ushas_landing_lang');if(saved==='en'||saved==='tr')initial=saved}catch(e){}
+  flSet(initial);
+})();
+
+// ── DIGITAL ARCHIVE
+(function(){
+  var ARCHIVE_DATA=[];
+  function escA(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function currentLang(){return document.documentElement.lang==='en'?'en':'tr'}
+  function findArea(id){return ARCHIVE_DATA.find(function(a){return a.id===id})}
+  function findItem(id,i){var a=findArea(id);return a&&a.items[i]}
+  function label(item,tr,en){return currentLang()==='en'?(item[en]||item[tr]||''):(item[tr]||item[en]||'')}
+  window.arcScroll=function(btn,dir){var rail=btn.parentElement.querySelector('.arc-rail');if(!rail)return;var card=rail.querySelector('.arc-card');var step=rail.clientWidth;if(card){var cs=getComputedStyle(rail);var gap=parseFloat(cs.columnGap||cs.gap||0)||0;step=Math.max(1,Math.min(rail.clientWidth,card.getBoundingClientRect().width+gap));}rail.scrollBy({left:dir*step,behavior:'smooth'});}
+  var ARC_PHOTOS=[];var ARC_PHOTO_INDEX=0;
+  window.arcTab=function(tab,id){var modal=document.getElementById('arc-modal');if(!modal)return;modal.querySelectorAll('.arc-tab').forEach(function(x){x.classList.remove('on')});modal.querySelectorAll('.arc-pane').forEach(function(x){x.classList.remove('on')});tab.classList.add('on');var pane=document.getElementById(id);if(pane){pane.classList.add('on');pane.scrollTop=0}};
+  function photoHTML(item){var photos=Array.isArray(item.photos)?item.photos.filter(function(p){return p&&p.url}):[];ARC_PHOTOS=photos;if(!photos.length)return '<div class="arc-empty-pane">'+(currentLang()==='en'?'No photos have been added yet.':'Henüz fotoğraf eklenmedi.')+'</div>';return '<div class="arc-photo-toolbar"><span class="arc-photo-count">'+photos.length+(currentLang()==='en'?' PHOTOS':' FOTOĞRAF')+'</span><span class="arc-photo-hint">'+(currentLang()==='en'?'Click an image for full-screen view.':'Görsele tıklayarak tam ekran görüntüleyebilirsiniz.')+'</span><span class="arc-photo-spacer"></span><button class="arc-photo-btn" type="button" onclick="arcPhotoOpen(0)">'+(currentLang()==='en'?'OPEN GALLERY':'GALERİYİ AÇ')+'</button></div><div class="arc-media-grid">'+photos.map(function(p,i){return '<figure onclick="arcPhotoOpen('+i+')"><img src="'+escA(p.url)+'" alt="'+escA(p.caption||'')+'" loading="lazy"><figcaption class="arc-media-caption">'+escA(p.caption||'')+'</figcaption></figure>'}).join('')+'</div>'}
+  function videoHTML(item){var videos=Array.isArray(item.videos)?item.videos.filter(function(v){return v&&v.url}):[];if(!videos.length)return '<div class="arc-empty-pane">'+(currentLang()==='en'?'No videos have been added yet.':'Henüz video eklenmedi.')+'</div>';return '<div class="arc-photo-toolbar"><span class="arc-photo-count">'+videos.length+(currentLang()==='en'?' VIDEOS':' VİDEO')+'</span></div><div class="arc-media-grid arc-video-grid">'+videos.map(function(v){return '<figure><video src="'+escA(v.url)+'" controls preload="metadata"></video></figure>'}).join('')+'</div>'}
+  window.arcPhotoOpen=function(i){if(!ARC_PHOTOS.length)return;ARC_PHOTO_INDEX=Math.max(0,Math.min(i,ARC_PHOTOS.length-1));arcPhotoRender();var lb=document.getElementById('arc-lightbox');if(lb){lb.classList.add('open');lb.setAttribute('aria-hidden','false')}};
+  window.arcPhotoRender=function(){var p=ARC_PHOTOS[ARC_PHOTO_INDEX];if(!p)return;var img=document.getElementById('arc-lb-img');if(img){img.src=p.url;img.alt=p.caption||''}var c=document.getElementById('arc-lb-counter');if(c)c.textContent=(ARC_PHOTO_INDEX+1)+' / '+ARC_PHOTOS.length;var cap=document.getElementById('arc-lb-caption');if(cap)cap.textContent=p.caption||'';var dl=document.getElementById('arc-lb-download');if(dl)dl.href=p.url};
+  window.arcPhotoMove=function(dir){if(!ARC_PHOTOS.length)return;ARC_PHOTO_INDEX=(ARC_PHOTO_INDEX+dir+ARC_PHOTOS.length)%ARC_PHOTOS.length;arcPhotoRender()};
+  window.arcPhotoClose=function(){var lb=document.getElementById('arc-lightbox');if(lb){lb.classList.remove('open');lb.setAttribute('aria-hidden','true')}};
+  window.arcOpen=function(areaId,index){
+    var item=findItem(areaId,index);if(!item)return;var modal=document.getElementById('arc-modal');if(!modal)return;
+    var title=label(item,'title_tr','title_en')||'Broşür';document.getElementById('arc-modal-title').textContent=title;document.getElementById('arc-modal-year').textContent=item.year||'';
+    var dataItems=Array.isArray(item.data_items)?item.data_items.filter(function(d){return d&&d.url}):[];
+    var visible=[['brochure','Broşür','Brochure']];if(dataItems.length||item.data_url)visible.push(['data','Dijital Veriler','Digital Data']);if(item.photos&&item.photos.length)visible.push(['photos','Fotoğraflar','Photos']);if(item.videos&&item.videos.length)visible.push(['videos','Videolar','Videos']);
+    document.getElementById('arc-tabs').innerHTML=visible.map(function(t,i){return '<button class="arc-tab'+(i===0?' on':'')+'" type="button" onclick="arcTab(this,\'arc-pane-'+t[0]+'\')">'+(currentLang()==='en'?t[2]:t[1])+'</button>'}).join('');
+    var cover=item.cover?'<img src="'+escA(item.cover)+'" alt="'+escA(title)+'">':'<div class="arc-cover-fallback"><span>'+escA(item.year||'')+'</span><b>BROŞÜR</b></div>';var desc=label(item,'desc_tr','desc_en');
+    document.getElementById('arc-pane-brochure').innerHTML='<div class="arc-brochure"><div class="arc-brochure-cover">'+cover+'</div><div class="arc-detail"><div class="arc-year">'+escA(item.year||'')+'</div><h4>'+escA(title)+'</h4><p>'+escA(desc)+'</p>'+(item.pdf?'<a class="arc-detail-btn" href="'+escA(item.pdf)+'" target="_blank" rel="noopener">'+(currentLang()==='en'?'OPEN BROCHURE PDF':'BROŞÜRÜ AÇ · PDF')+' ↗</a>':'')+'</div></div>';
+    if(!dataItems.length&&item.data_url)dataItems=[{label_tr:'Dijital Veriler',label_en:'Digital Data',url:item.data_url}];
+    document.getElementById('arc-pane-data').innerHTML=dataItems.length?'<div class="arc-data-list">'+dataItems.map(function(d){return '<div class="arc-data-card"><h4>'+escA(label(d,'label_tr','label_en')||'Dijital Veriler')+'</h4><a href="'+escA(d.url)+'" target="_blank" rel="noopener">'+(currentLang()==='en'?'OPEN RESOURCE':'KAYNAĞA ULAŞ')+' ↗</a></div>'}).join('')+'</div>':'<div class="arc-empty-pane">'+(currentLang()==='en'?'No digital resources have been added yet.':'Henüz dijital veri eklenmedi.')+'</div>';
+    document.getElementById('arc-pane-photos').innerHTML=photoHTML(item);document.getElementById('arc-pane-videos').innerHTML=videoHTML(item);
+    modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  };
+  window.arcClose=function(){var m=document.getElementById('arc-modal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}}
+  document.getElementById('arc-modal')?.addEventListener('click',function(e){if(e.target===this)arcClose()});document.getElementById('arc-lightbox')?.addEventListener('click',function(e){if(e.target===this)arcPhotoClose()});document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(document.getElementById('arc-lightbox')?.classList.contains('open'))arcPhotoClose();else arcClose()}else if(document.getElementById('arc-lightbox')?.classList.contains('open')){if(e.key==='ArrowLeft')arcPhotoMove(-1);if(e.key==='ArrowRight')arcPhotoMove(1)}});
+})();
+
+// ── LIGHTBOX
+(function(){
+  var imgs=[];
+  var cur=0;
+  // Galeri görselleri lazy set edilir; lbOpen çağrısında imgden src alır
+  window.lbOpen=function(i){
+    var figs=document.querySelectorAll('.gal figure img');
+    imgs=Array.prototype.map.call(figs,function(el){return el.src;});
+    cur=i;
+    var el=document.getElementById('lb-img');
+    if(el)el.src=imgs[cur]||'';
+    var lb=document.getElementById('lb');
+    if(lb){lb.classList.add('open');document.body.style.overflow='hidden';}
+  };
+  window.lbClose=function(){
+    var lb=document.getElementById('lb');
+    if(lb){lb.classList.remove('open');document.body.style.overflow='';}
+  };
+  window.lbMove=function(dir,e){
+    if(e)e.stopPropagation();
+    if(!imgs.length)return;
+    cur=(cur+dir+imgs.length)%imgs.length;
+    var el=document.getElementById('lb-img');
+    if(el)el.src=imgs[cur];
+  };
+  document.addEventListener('keydown',function(e){
+    var lb=document.getElementById('lb');
+    if(!lb||!lb.classList.contains('open'))return;
+    if(e.key==='Escape')lbClose();
+    else if(e.key==='ArrowLeft')lbMove(-1);
+    else if(e.key==='ArrowRight')lbMove(1);
+  });
+})();
+
+// ── FADE-IN
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('vis');obs.unobserve(en.target);}
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.kicker,h2,.body p,.ct-card,.sec2,.stmt').forEach(function(el){
+    el.classList.add('reveal');obs.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
